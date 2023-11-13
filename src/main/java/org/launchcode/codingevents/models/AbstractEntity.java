@@ -7,7 +7,7 @@ import jakarta.persistence.MappedSuperclass;
 import java.util.Objects;
 
 @MappedSuperclass
-public class AbstractEntity {
+public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue
@@ -21,7 +21,7 @@ public class AbstractEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AbstractEntity entity = (Event) o;
+        AbstractEntity entity = (AbstractEntity) o;
         return id == entity.id;
     }
 

@@ -3,9 +3,8 @@ package org.launchcode.codingevents.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
-import java.util.Objects;
 
 /**
  * Created by Chris Bay
@@ -27,13 +26,14 @@ public class Event extends AbstractEntity{
     private String contactEmail;
 
     @ManyToOne
-    private EventCategory type;
+    @NotNull(message = "Event category is required.")
+    private EventCategory category;
 
-    public Event(String name, String description, String contactEmail, EventCategory type) {
+    public Event(String name, String description, String contactEmail, EventCategory category) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.type = type;
+        this.category = category;
     }
 
     public Event() {}
@@ -62,12 +62,12 @@ public class Event extends AbstractEntity{
         this.contactEmail = contactEmail;
     }
 
-    public EventCategory getType() {
-        return type;
+    public EventCategory getCategory() {
+        return category;
     }
 
-    public void setType(EventCategory type) {
-        this.type = type;
+    public void setCategory(EventCategory category) {
+        this.category = category;
     }
 
 

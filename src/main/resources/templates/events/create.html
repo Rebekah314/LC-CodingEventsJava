@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:replace="~{fragments :: head}"></head>
 <body class="container">
 
-<header th:replace="fragments :: header"></header>
+<header th:replace="~{fragments :: header}"></header>
 
 <p th:text="${errorMsg}" style="color:red;"></p>
 
@@ -27,14 +27,15 @@
         <p class="error" th:errors="${event.contactEmail}"></p>
     </div>
     <div class="form-group">
-        <label>Type
-            <select th:field="${event.type}">
-                <option th:each="type : ${types}"
-                        th:value="${type.id}"
-                        th:text="${type.toString()}"
+        <label>Category
+            <select th:field="${event.category}">
+                <option th:each="category : ${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.toString()}"
                 ></option>
             </select>
         </label>
+        <p class="error" th:errors="${event.category}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-success">
